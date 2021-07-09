@@ -2,7 +2,7 @@ import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 
 export default function slider() {
-    const [sliderRef] = useKeenSlider({
+    const [sliderRef, slider] = useKeenSlider({
       slidesPerView: 3,
       mode: "snap",
       spacing: 15,
