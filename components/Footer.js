@@ -23,7 +23,7 @@ export default function Footer() {
               <div className="flex-row mt-8">
                 <p className="text-white font-semibold">Customer Service</p>
                 <div className="flex mt-1">
-                  <a className="text-white" href="www.instagram.com">
+                  <a className="text-white" href="http://wa.me/6283866754428">
                       +62 838-6675-4428
                   </a>
                 </div>

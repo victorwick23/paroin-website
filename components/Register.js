@@ -1,6 +1,8 @@
 import { useState, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from "react-hook-form";
+import Lottie from 'react-lottie';
+import animationData from './lottie/loading.json';
 
 export default function Register() {
 
@@ -10,18 +12,31 @@ export default function Register() {
   const [submitted, setSubmitted] = useState(false)
   const { register, handleSubmit } = useForm();
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+   
+  }
+
   let [isOpen, setIsOpen] = useState(false)
+  let [isLoading, setLoading] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
   }
-
   function openModal() {
     setIsOpen(true)
   }
+  function closeLoading(){
+    setLoading(false)
+  }
+  function openLoading(){
+    setLoading(true)
+  }
 
   const registerForm = (e) => { 
-    
+    openLoading()
     let data = {
       name,
       email,
@@ -35,10 +50,11 @@ export default function Register() {
       },
       body: JSON.stringify(data)
     }).then( (res) => {
+      closeLoading()
       if (res.status === 200) {
         openModal()
-        setSubmitted(true)
         setName('')
+        setSubmitted(true)
         setEmail('')
         setMessage('')
       }
@@ -47,25 +63,10 @@ export default function Register() {
 
     return (
         <>
-        <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
-        >
+      {isLoading &&
+        <div>
+        <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0" />
-            </Transition.Child>
-
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="inline-block h-screen align-middle"
@@ -73,42 +74,89 @@ export default function Register() {
             >
               &#8203;
             </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
+            
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+              <Lottie 
+                options={defaultOptions}
+                  height={200}
+                  width={300}
+                />
+                <p
+                  as="h2"
+                  className="text-lg font-bold leading-6 text-redTheme text-center mt-4"
                 >
-                  Pemesanan berhasil
-                </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp 
-                  </p>
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-redTheme border border-transparent rounded-md hover:bg-white hover:text-redTheme hover:border hover:border-redTheme focus:outline-none "
-                    onClick={closeModal}
-                  >
-                    Selesai
-                  </button>
-                </div>
+                  Data Anda Sedang Diproses
+                </p>
               </div>
-            </Transition.Child>
           </div>
-        </Dialog>
-      </Transition>
+        </div>
+      </div>
+      }
+
+      <Transition appear show={isOpen} as={Fragment}>
+              <Dialog
+                as="div"
+                className="fixed inset-0 z-10 overflow-y-auto"
+                onClose={closeModal}
+              >
+                <div className="min-h-screen px-4 text-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Dialog.Overlay className="fixed inset-0" />
+                  </Transition.Child>
+
+                  {/* This element is to trick the browser into centering the modal contents. */}
+                  <span
+                    className="inline-block h-screen align-middle"
+                    aria-hidden="true"
+                  >
+                    &#8203;
+                  </span>
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                  >
+                    <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                      >
+                        Pemesanan berhasil
+                      </Dialog.Title>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp 
+                        </p>
+                      </div>
+
+                      <div className="mt-4">
+                        <button
+                          type="button"
+                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-redTheme border border-transparent rounded-md hover:bg-white hover:text-redTheme hover:border hover:border-redTheme focus:outline-none "
+                          onClick={closeModal}
+                        >
+                          Selesai
+                        </button>
+                      </div>
+                    </div>
+                  </Transition.Child>
+                </div>
+              </Dialog>
+            </Transition>
+
+      
         <div className="grid justify-items-center">
               <p className="w-full text-redTheme text-2xl font-bold text-center md:text-3xl">Beli Sekarang</p>
               <div className="border-b border-redTheme w-12 pt-2"></div>
@@ -157,6 +205,7 @@ export default function Register() {
                 </button>
             </div>
           </div>
+             
             </div>
          </form>
         </>
