@@ -14,20 +14,21 @@ export default function (req, res) {
     })  
     const mailData = {
       from: 'register.paroin@gmail.com',
-      to: 'victorwicaksono6@gmail.com',
-      subject: `New Order From ${req.body.name}`,
+      to: `victorwicaksono6@gmail.com, ${req.body.email}`,
+      subject: `Paroin.id | Proses Pemesanan Berhasil Untuk : ${req.body.name}`,
       text: req.body.message + " | Sent from: " + req.body.email,
       html: `<div>
       <h2>
-        Pesanan Baru Untuk Paket Netflix Premiun 
+        PEMESANAN BERHASIL UNTUK PAKET NETFLIX PREMIUM (SHARING) 
       </h2>
-      <h3> Detail Pesanan :</h3>
+      <h3>Detail Pesanan</h3>
       
-      <h4>Email Pemesan:  ${req.body.email}</h4>
-      <h4>Nama Pemesan: ${req.body.name}</h4>
-      <h4>Nomer Handphone Pemesan: ${req.body.message}</h4>
+      <h4>Email:  ${req.body.email}</h4>
+      <h4>Nama: ${req.body.name}</h4>
+      <h4>Nomer Handphone: ${req.body.message}</h4>
 
-      <p>Segera proses pesanan ini maksimal 1 jam setelah pesan ini masuk</p>
+      <p>Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp</p>
+      <p>Jika dalam 1 Jam pesanan anda belum di proses harap hubungi Customer Service kami di : +62 838-6675-4428</p>
       </div>`
     }  
     transporter.sendMail(mailData, function (err, info) {
