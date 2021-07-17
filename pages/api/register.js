@@ -23,11 +23,13 @@ export default function (req, res) {
       </h2>
       <h3>Detail Pesanan</h3>
       
-      <h4>Email:  ${req.body.email}</h4>
-      <h4>Nama: ${req.body.name}</h4>
-      <h4>Nomer Handphone: ${req.body.message}</h4>
+      <h4 style="padding-bottom: 0px;margin-top: 28px;margin-bottom: 0px;">Email:  ${req.body.email}</h4>
+      <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Nama: ${req.body.name}</h4>
+      <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Nomer Handphone: ${req.body.message}</h4>
+      <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Product: Netflix Premium (Sharing)</h4>
+      <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 60px;">Harga: Rp. 45.000</h4>
 
-      <p>Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp</p>
+      <p style="padding-bottom: 0px;margin-bottom: 0px;">Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp</p>
       <p>Jika dalam 1 Jam pesanan anda belum di proses harap hubungi Customer Service kami di : +62 838-6675-4428</p>
       </div>`
     }  
