@@ -160,6 +160,7 @@ export default function Register() {
         <div className="grid justify-items-center">
               <p className="w-full text-redTheme text-2xl font-bold text-center md:text-3xl">Beli Sekarang</p>
               <div className="border-b border-redTheme w-12 pt-2"></div>
+              <p className="w-full text-redTheme text-md font-bold pt-4 text-center md:text-lg md:pt-8">Daftar sekarang tanpa membuat akun, dan dalam waktu maksimal 1 Jam pesanan anda akan kami proses</p>
           </div>
          <form onSubmit={handleSubmit(registerForm)} id="registerPage" className="flex ms">
              

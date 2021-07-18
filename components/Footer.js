@@ -12,10 +12,10 @@ export default function Footer() {
               <div className="flex-row">
                 <p className="text-white font-semibold">Social Media</p>
                 <div className="flex mt-2">
-                  <a className="pr-4" href="www.instagram.com">
+                  <a className="pr-4" href="https://www.instagram.com/paroin.id/">
                       <img className="w-6" src="instagram.svg" alt="" />
                   </a>
-                  <a href="www.instagram.com">
+                  <a href="https://twitter.com/paroinid">
                       <img className="w-6" src="twitter.svg" alt="" />
                   </a>
                 </div>
