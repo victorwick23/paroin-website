@@ -14,7 +14,7 @@ export default function Hero(){
                     <div className="w-full md:mt-8">
                         <Link to="registerPage" spy={true} smooth={true}>
                             <button className="bg-redTheme px-4 py-2 mt-8 rounded-md mx-auto block">
-                                <p className="text-white font-bold">Beli Paket</p>
+                                <p className="text-white font-bold">Beli Sekarang</p>
                             </button>
                         </Link>
                     </div>

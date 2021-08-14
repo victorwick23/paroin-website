@@ -9,9 +9,13 @@ export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [product, setProduct] = useState('null')
+  const [productsend, setSentProduct] = useState('')
+  const [pricesend, setSentPrice] = useState ('')
   const [submitted, setSubmitted] = useState(false)
   const [errorName, setErrorName] = useState(false)
   const [errorEmail, setErrorEmail] = useState(false)
+  const [errorProduct, setErrorProduct] = useState(false)
   const [errorMessage, setErrorMessage] = useState(false)
   const [validEmail, setValidEmail] = useState(false)
   const [validPhone, setValidPhone] = useState(false)
@@ -46,17 +50,17 @@ export default function Register() {
     email === '' ? setErrorEmail(true) : setErrorEmail(false)
     email.includes('@') ? setValidEmail(false) : setValidEmail(true)
     message === '' ? setErrorMessage(true) : setErrorMessage(false)
+    product === 'null' ? setErrorProduct(true) : setErrorProduct(false)
     message.match(/^(\+62|62)?[\s-]?0?8[1-9]{1}\d{1}[\s-]?\d{4}[\s-]?\d{2,5}$/g) ? setValidPhone(false) : setValidPhone(true)
-    console.log("email", validEmail)
-    console.log("nomer",validPhone)
-    if (name !== '' && email !== '' && message !== '' && validEmail === false && validPhone === false) {
-      console.log("ke modal")
+    if (name !== '' && email !== '' && message !== '' && validEmail === false && validPhone === false && product !== 'null') {
       openConfirm()
     }
   }
 
   function openConfirm(){
+    setDataSent()
     setConfirm(true)
+    console.log(productsend, pricesend)
   }
   function closeConfirm(){
     setConfirm(false)
@@ -64,15 +68,35 @@ export default function Register() {
   function refreshPage(){
     window.location.reload();
   }
+  function setDataSent(){
+    if (product === 'netflixprem') {
+      setSentProduct('Netflix Premium Sharing')
+      setSentPrice('Rp. 42.000')
+    }else if(product === 'youtubeprem'){
+      setSentProduct('Youtube Premium')
+      setSentPrice('Rp. 13.000')
+    }else if(product === 'spotifyprem'){
+      setSentProduct('Spotify Premium')
+      setSentPrice('Rp. 15.000')
+    }else if(product === 'disneyprem'){
+      setSentProduct('Disney+ Hotstar')
+      setSentPrice('Rp. 25.000')
+    }else if (product === 'viu'){
+      setSentProduct('Viu Premium')
+      setSentPrice('Rp. 7.000')   
+    }
+    
+  }
 
   const registerForm = (e) => { 
-    console.log("udh dikirim aja")
     closeConfirm()
     openLoading()
     let data = {
       name,
       email,
-      message
+      message, 
+      productsend,
+      pricesend
     }
     fetch('/api/register', {
       method: 'POST',
@@ -172,10 +196,36 @@ export default function Register() {
                      </div>
                      <div className="flex border-b border-gray-300 border-dashed py-1">
                         <div className="w-3/12">
-                            <p className="text-md">Product  </p>
+                            <p className="text-md">Product 
+                           
+                             </p>
                         </div>
                         <div className="w-9/12">
-                            <p className="text-md font-bold">: Netflix Premium (sharing)</p>
+                            {product === 'netflixprem' && (
+                              <p className="text-md font-bold">: Netflix Sharing Premium</p>
+                            )}
+                            {product === 'youtubeprem' && (
+                              <p className="text-md font-bold">: Youtube Premium</p>
+                            )}
+                            {product === 'spotifyprem' && (
+                              <p className="text-md font-bold">: Spotify Premium</p>
+                            )}
+                            {product === 'disneyprem' && (
+                              <p className="text-md font-bold">: Disney+ Hotstar</p>
+                            )}
+                             {product === 'viu' && (
+                              <p className="text-md font-bold">: Viu Premium</p>
+                            )}
+                        </div>
+                     </div>
+                     <div className="flex border-b border-gray-300 border-dashed py-1">
+                        <div className="w-3/12">
+                            <p className="text-md">Durasi 
+                           
+                             </p>
+                        </div>
+                        <div className="w-9/12">
+                          <p className="text-md font-bold">: 1 Bulan (30 hari)</p>
                         </div>
                      </div>
                      <div className="flex border-b border-gray-300 border-dashed py-1">
@@ -183,14 +233,28 @@ export default function Register() {
                             <p className="text-md">Harga </p>
                         </div>
                         <div className="w-9/12">
-                            <p className="text-md font-bold">: Rp. 45.000</p>
+                            {product === 'netflixprem' && (
+                              <p className="text-md font-bold">: Rp. 42.000</p>
+                            )}
+                            {product === 'youtubeprem' && (
+                              <p className="text-md font-bold">: Rp. 13.000</p>
+                            )}
+                            {product === 'spotifyprem' && (
+                              <p className="text-md font-bold">: Rp. 15.000</p>
+                            )}
+                            {product === 'disneyprem' && (
+                              <p className="text-md font-bold">: Rp. 25.000</p>
+                            )}
+                            {product === 'viu' && (
+                              <p className="text-md font-bold">: Rp. 7.000</p>
+                            )}
                         </div>
                      </div>
                    </div>
 
                    <div className="w-full py-2">
                         <p className="text-gray-400 text-sm">Metode pembayaran yang kami terima: </p>
-                        <p className="text-gray-400 text-sm italic">Bank : BCA, BNI, Jenius(BTPN) </p>
+                        <p className="text-gray-400 text-sm italic">Bank : BCA, BSI, Jenius(BTPN) </p>
                         <p className="text-gray-400 text-sm italic">E-Wallet : Ovo, Gopay, LinkAja, Dana, ShopeePay </p>
                    </div>
 
@@ -314,7 +378,7 @@ export default function Register() {
           <div className="flex">
             <div className="flex-row w-full py-2">
                 <label htmlFor="message" className="w-full text-redTheme text-sm">No. Handphone (Whatsapp)</label>
-                <input value={message} {...register("message", { required: true })} type="text" onChange={(e)=>{setMessage(e.target.value)}} name='message' className="w-full bg-white rounded-md px-4 md:shadow-xl focus:outline-none py-2 mt-1" placeholder="Nomor Whatsapp Anda"/>
+                <input value={message} type="text" onChange={(e)=>{setMessage(e.target.value)}} name='message' className="w-full bg-white rounded-md px-4 md:shadow-xl focus:outline-none py-2 mt-1" placeholder="Nomor Whatsapp Anda"/>
                 {errorMessage && 
                 <div><p className="text-redTheme italic text-xs font-bold">Nomor Handphone tidak boleh kosong</p></div>
                 }
@@ -324,7 +388,7 @@ export default function Register() {
             </div>
           </div>
           <div className="flex">
-            <div className="flex-row w-full py-2">
+            {/* <div className="flex-row w-full py-2">
                 <label htmlFor="name" className="w-full text-redTheme text-sm">Pilih Paket</label>
                 <div className="w-full flex justify-between bg-white md:shadow-xl rounded-md px-4 py-2">
                   <div className="flex">
@@ -333,7 +397,27 @@ export default function Register() {
                   </div>
                   <p className="text-redTheme font-bold">45K</p>
                 </div>
+            </div> */}
+            <div className="flex-row w-full py-2">
+                <label htmlFor="name" className="w-full text-redTheme text-sm">Pilih Paket</label>
+                <div className="relative inline-block w-full text-gray-700">
+                  <select value={product} onChange={(e)=>{setProduct(e.target.value)}} className="w-full flex justify-between bg-white md:shadow-xl rounded-md px-4 py-2 appearance-none">
+                    <option value="null">Pilih Paket</option>
+                    <option value="netflixprem">Netflix Sharing Premium (1 Bulan)</option>
+                    <option value="youtubeprem">Youtube Premium (1 Bulan)</option>
+                    <option value="spotifyprem">Spotify Premium (1 Bulan)</option>
+                    <option value="viu">Viu Premium (1 Bulan)</option>
+                    {/* <option value="disneyprem">Disney+ Hotstar (1 Bulan)</option> */}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                    <svg className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                  </div>
+                </div>
+                {errorProduct && 
+                <div><p className="text-redTheme italic text-xs font-bold">Pilih Paket Anda</p></div>
+                }
             </div>
+            
           </div>
           <div className="flex w-full my-8">
             <div className="w-full">
