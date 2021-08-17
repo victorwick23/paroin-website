@@ -121,7 +121,7 @@ export default function slider() {
                               <p className="w-9/12 md:text-base text-left text-black">Skip Tanpa Batas</p>
                           </div>
                           <div className="flex w-full absolute bottom-16 right-0 left-0">
-                              <p className="w-full text-redTheme text-2xl font-bold text-center">Rp. 15.000<span
+                              <p className="w-full text-redTheme text-2xl font-bold text-center">Rp. 19.000<span
                                       className="text-redTheme text-sm">/bln</span></p>
                           </div>
                           <div className="w-full md:mt-8 absolute bottom-3 right-0 left-0">

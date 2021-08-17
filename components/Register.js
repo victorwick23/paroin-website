@@ -77,7 +77,7 @@ export default function Register() {
       setSentPrice('Rp. 13.000')
     }else if(product === 'spotifyprem'){
       setSentProduct('Spotify Premium')
-      setSentPrice('Rp. 15.000')
+      setSentPrice('Rp. 19.000')
     }else if(product === 'disneyprem'){
       setSentProduct('Disney+ Hotstar')
       setSentPrice('Rp. 25.000')
@@ -240,7 +240,7 @@ export default function Register() {
                               <p className="text-md font-bold">: Rp. 13.000</p>
                             )}
                             {product === 'spotifyprem' && (
-                              <p className="text-md font-bold">: Rp. 15.000</p>
+                              <p className="text-md font-bold">: Rp. 19.000</p>
                             )}
                             {product === 'disneyprem' && (
                               <p className="text-md font-bold">: Rp. 25.000</p>
