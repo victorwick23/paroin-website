@@ -14,7 +14,7 @@ export default function (req, res) {
     })  
     const mailData = {
       from: 'register.paroin@gmail.com',
-      to: `order.paroin@gmail.com, ${req.body.email}`,
+      to: `victorwicaksono6@gmail.com, ${req.body.email}`,
       subject: `Paroin.id | Pemesanan Berhasil Untuk : ${req.body.productsend}`,
       text: req.body.message + " | Sent from: " + req.body.email,
       html: `<div>
@@ -27,7 +27,6 @@ export default function (req, res) {
       <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Nama: ${req.body.name}</h4>
       <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Nomer Handphone: ${req.body.message}</h4>
       <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Product: ${req.body.productsend}</h4>
-      <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 0px;">Durasi: 1 Bulan</h4>
       <h4 style="padding-bottom: 0px;margin-top: 6px;margin-bottom: 60px;">Harga: ${req.body.pricesend}</h4>
 
       <p style="padding-bottom: 0px;margin-bottom: 0px;">Pesanan anda telah kami terima, silahkan tunggu beberapa saat sampai admin kami menghubungi anda melalui Whatsapp</p>

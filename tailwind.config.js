@@ -14,6 +14,9 @@ module.exports = {
       backgroundImage: {
         'backgroundForm': "url('/background.svg')",
       },
+      height: {
+        slide: '28rem',
+       }
     },
   },
   variants: {
